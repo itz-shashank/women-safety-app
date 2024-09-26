@@ -1,0 +1,41 @@
+.safezones-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    color: #e6007e; 
+    margin-bottom: 20px;
+  }
+  
+  .questions-section {
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .questions-heading {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .question {
+    margin-bottom: 15px;
+  }
+  
+  .question-text {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .answer-text {
+    color: #555;
+  }
+  
