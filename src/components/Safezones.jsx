@@ -55,7 +55,7 @@ const Safezones = () => {
     slidesToScroll: 1,
     arrows: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     nextArrow: <div className="slick-arrow slick-next bg-pink-600 text-white rounded-full">➡️</div>,
     prevArrow: <div className="slick-arrow slick-prev bg-pink-600 text-white rounded-full">⬅️</div>,
   };
