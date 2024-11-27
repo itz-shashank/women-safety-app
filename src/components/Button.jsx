@@ -8,7 +8,7 @@ const SOSButton = () => {
         const { latitude, longitude } = position.coords;
 
         try {
-          const response = await axios.post('http://localhost:5000/api/send-alert', {
+          const response = await axios.post('http://localhost:5000/send-alert', {
             lat: latitude,
             lon: longitude,
           });
