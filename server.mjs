@@ -47,7 +47,7 @@ app.listen(PORT, () => {
 
 
 
-
+//Database Connection
 
 
 mongoose.connect(process.env.MONGO_URI)
@@ -59,13 +59,13 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 
- 
+ //User Signup
 
   app.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
   
     
-    console.log('Received signup data:', { username, email, password });
+    // console.log('Received signup data:', { username, email, password });
   
    
     if (!username || !email || !password) {
@@ -73,16 +73,16 @@ mongoose.connect(process.env.MONGO_URI)
     }
   
     try {
-      // Check if user already exists
+      
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         return res.status(400).json({ message: "User already exists" });
       }
   
-      // Hash the password
+    
       const hashedPassword = await bcrypt.hash(password, 10);
   
-      // Create a new user
+      
       const newUser = new User({
         username,
         email,
@@ -91,7 +91,7 @@ mongoose.connect(process.env.MONGO_URI)
   
       await newUser.save();
   
-      // Send a success response
+ 
       res.status(201).json({ message: "Signup successful" });
     } catch (error) {
       console.error('Error in signup:', error);
