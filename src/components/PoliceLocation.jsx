@@ -5,7 +5,7 @@ import L from 'leaflet';
 
 
 const policeIcon = new L.Icon({
-  iconUrl: 'public/icon/police-station.png', 
+  iconUrl: '/icon/police-station.png', 
   iconSize: [25, 41],
   iconAnchor: [12, 41],
 });

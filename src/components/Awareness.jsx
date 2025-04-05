@@ -15,15 +15,15 @@ const Awareness = () => {
       {}
       <Carousel showArrows={true} infiniteLoop={true} className="mb-8">
         <div>
-          <img src="public/safety/00000027.avif" alt="Campaign 1" />
+          <img src="/safety/00000027.avif" alt="Campaign 1" />
           <p className="legend">Self-Defense Workshops</p>
         </div>
         <div>
-          <img src="public/safety/Delhi-police-safety-tips-healthylife-werindia.jpg" alt="Campaign 2" />
+          <img src="/safety/Delhi-police-safety-tips-healthylife-werindia.jpg" alt="Campaign 2" />
           <p className="legend">Safe Travel Tips</p>
         </div>
         <div>
-          <img src="public/safety/pepper-spray.jpg" alt="Campaign 3" />
+          <img src="/safety/pepper-spray.jpg" alt="Campaign 3" />
           <p className="legend">Emergency Contact Awareness</p>
         </div>
       </Carousel>

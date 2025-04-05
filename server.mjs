@@ -5,17 +5,26 @@ import twilio from 'twilio';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
-import User from './models/user.js'; // Adjust the path as needed
-import bcrypt from 'bcrypt'; // For password hashing
-const SALT_ROUNDS = 10; // Adjust hashing strength
+import User from './models/user.js'; 
+import bcrypt from 'bcrypt'; 
+const SALT_ROUNDS = 10; 
 
 
 dotenv.config();
+
+
+
 
 const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 const app = express();
 const PORT = 5000;
+
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://women-safety1.netlify.app/'], 
+  methods: ['GET', 'POST'],
+  credentials: true,
+}));
 
 app.use(bodyParser.json());
 app.use(cors());

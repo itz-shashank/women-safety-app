@@ -18,7 +18,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data to be sent:', formData); // Log the form data here
+    console.log('Form Data to be sent:', formData); 
   
     try {
       const response = await axios.post('http://localhost:5000/signup', formData);
@@ -31,7 +31,7 @@ const SignUp = () => {
   
 
   return (
-    <div className="flex justify-center items-center h-screen bg-cover bg-center" style={{ backgroundImage: "url('public/safety/background.jpg')" }}>
+    <div className="flex justify-center items-center h-screen bg-cover bg-center" style={{ backgroundImage: "url('/safety/background.jpg')" }}>
       <form onSubmit={handleSubmit} className="bg-white bg-opacity-20 p-6 rounded shadow-md w-1/3">
         <h2 className="text-2xl font-bold text-pink-600 mb-4">Sign Up</h2>
         {message && <p className="text-green-600 mb-2">{message}</p>}

@@ -42,7 +42,7 @@ const Sidebar = () => {
   return (
     <SidebarContainer>
       {}
-      <LogoImage src="public/SHAKTI.png" alt="Shakti Logo" /> 
+      <LogoImage src="/SHAKTI.png" alt="Shakti Logo" /> 
       
      
       <SidebarLink to="/" aria-label="Home">Home</SidebarLink>

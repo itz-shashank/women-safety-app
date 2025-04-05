@@ -23,13 +23,13 @@ const Rating = () => {
       user: 'John Doe',
       rating: 4,
       description: 'Very safe area, felt secure during my visit.',
-      photo: '/public/dummy/brooke-cagle-Nm70URdtf3c-unsplash.jpg', 
+      photo: '/dummy/brooke-cagle-Nm70URdtf3c-unsplash.jpg', 
     },
     {
       user: 'Jane Smith',
       rating: 5,
       description: 'Absolutely loved it! Highly recommend.',
-      photo: '/public/dummy/panagiotis-falcos-Xm6cn4G1z0c-unsplash.jpg',
+      photo: '/dummy/panagiotis-falcos-Xm6cn4G1z0c-unsplash.jpg',
     },
   ]);
 
@@ -52,7 +52,7 @@ const Rating = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: `url('public/safety/bgratings.jpg')` }}>
+    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: `url('/safety/bgratings.jpg')` }}>
       <div className="backdrop-blur-sm bg-black bg-opacity-50 min-h-screen p-10">
         <div className="max-w-4xl mx-auto p-6 bg-white bg-opacity-10 rounded-lg shadow-lg backdrop-blur-lg">
           <h2 className="text-3xl font-bold text-white mb-6 text-center">Safety Ratings</h2>
