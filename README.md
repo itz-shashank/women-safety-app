@@ -29,8 +29,7 @@ A mobile-first safety companion app designed to enhance the personal security of
 ## 📱 Screenshots
 
 > _Add screenshots here if available_  
-`/screenshots/home.png`  
-`/screenshots/map-view.png`
+
 
 ---
 
