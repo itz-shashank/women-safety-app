@@ -24,14 +24,24 @@ const app = express();
 //   origin: ['http://localhost:5173', 'https://women-safety1.netlify.app/'], 
 //   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 // }));
+// app.use(cors({
+//   origin: ['http://localhost:5173', 'https://women-safety1.netlify.app/'], 
+//   credentials: true
+// }));
+
+
+// app.use(bodyParser.json());
+// app.use(cors());
+
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',              // Local development
+    'https://women-safety1.netlify.app', // Your deployed frontend
+    'https://women-safety-backend-poho.onrender.com'
+   
+  ],
   credentials: true
 }));
-
-
-app.use(bodyParser.json());
-app.use(cors());
 
 
 
@@ -150,3 +160,18 @@ mongoose.connect(process.env.MONGO_URI)
     }
   });
   
+
+
+  import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve frontend build
+// import express from 'express';
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
