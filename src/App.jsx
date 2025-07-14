@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Safezones from './components/Safezones';
 import Rating from './components/Rating';
-import SafeRoute from './components/Saferoute';
+import SafeRoute from './components/SafeRoute';
 import PoliceLocation from './components/PoliceLocation';
 import RouteDetail from './components/RouteDetail';
 import AwarenessComponent from './components/Awareness';
