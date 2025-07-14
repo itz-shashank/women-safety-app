@@ -35,9 +35,9 @@ const app = express();
 
 app.use(cors({
   origin: [
-    'http://localhost:5173',              // Local development
+             
     'https://women-safety1.netlify.app', // Your deployed frontend
-    'https://women-safety-backend-poho.onrender.com'
+  
    
   ],
   credentials: true
