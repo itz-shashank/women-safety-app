@@ -36,7 +36,7 @@ const app = express();
 app.use(cors({
   origin: [
              
-    'https://women-safety1.netlify.app', // Your deployed frontend
+    'https://gleeful-pasca-c4bbd2.netlify.app/', // Your deployed frontend
   
    
   ],
