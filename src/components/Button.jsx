@@ -2,13 +2,16 @@ import React from 'react';
 import axios from 'axios';
 
 const SOSButton = () => {
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const sendAlert = async () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords;
 
         try {
-          const response = await axios.post('http://localhost:5000/send-alert', {
+          const response = await axios.post(`${apiUrl}/send-alert`, {
             lat: latitude,
             lon: longitude,
           });

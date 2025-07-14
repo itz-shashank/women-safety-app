@@ -8,6 +8,11 @@ const SignUp = () => {
     password: '',
   });
 
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+
+
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
@@ -21,7 +26,7 @@ const SignUp = () => {
     console.log('Form Data to be sent:', formData); 
   
     try {
-      const response = await axios.post('http://localhost:5000/signup', formData);
+      const response = await axios.post(`${apiUrl}/signup`, formData);
       console.log('Signup successful:', response);
     } catch (error) {
       console.error('Error during signup:', error);

@@ -1,55 +1,97 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import twilio from 'twilio';
+// import twilio from 'twilio';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-
 import User from './models/user.js'; 
 import bcrypt from 'bcrypt'; 
 const SALT_ROUNDS = 10; 
+import nodemailer from 'nodemailer';
 
 
 dotenv.config();
 
+const PORT = process.env.PORT ; // Use the PORT from .env or default to 5000
 
 
-
-const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+// const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 const app = express();
-const PORT = 5000;
 
+
+// app.use(cors({
+//   origin: ['http://localhost:5173', 'https://women-safety1.netlify.app/'], 
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+// }));
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://women-safety1.netlify.app/'], 
-  methods: ['GET', 'POST'],
-  credentials: true,
+  origin: 'http://localhost:5173',
+  credentials: true
 }));
+
 
 app.use(bodyParser.json());
 app.use(cors());
 
+
+
+
 app.post('/send-alert', async (req, res) => {
   const { lat, lon } = req.body;
 
-  console.log('SOS alert received:', { lat, lon });
+  if (!lat || !lon) {
+    return res.status(400).json({ message: 'Latitude and longitude are required.' });
+  }
+
+  console.log('🚨 SOS alert received:', { lat, lon });
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS, // app password
+    },
+  });
+
+  const mailOptions = {
+    from: `"SOS Alert System" <${process.env.GMAIL_USER}>`,
+    to: process.env.TO_EMAIL,
+    subject: '🚨 SOS Alert - Immediate Action Required',
+    text: `An SOS alert was triggered!\n\nLatitude: ${lat}\nLongitude: ${lon}\n\n📍 https://maps.google.com/?q=${lat},${lon}`,
+  };
 
   try {
-    const message = await twilioClient.messages.create({
-      body: `SOS Alert! Location: Latitude: ${lat}, Longitude: ${lon}`,
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: process.env.RECIPIENT_PHONE_NUMBER,
-    });
-
-    console.log('SMS sent successfully:', message.sid);
-    res.status(200).send({ message: 'SOS alert received and SMS sent successfully' });
+    const info = await transporter.sendMail(mailOptions);
+    console.log('✅ SOS email sent:', info.response);
+    res.status(200).json({ message: 'SOS alert sent via email!' });
   } catch (error) {
-    console.error('Error sending SMS:', error);
-    res.status(500).send({ message: 'Failed to send SOS alert' });
+    console.error('❌ Error sending SOS email:', error);
+    res.status(500).json({ message: 'Failed to send SOS email.' });
   }
 });
 
-app.listen(PORT, () => {
+
+// app.post('/send-alert', async (req, res) => {
+//   const { lat, lon } = req.body;
+
+//   console.log('SOS alert received:', { lat, lon });
+
+//   try {
+//     const message = await twilioClient.messages.create({
+//       body: `SOS Alert! Location: Latitude: ${lat}, Longitude: ${lon}`,
+//       from: process.env.TWILIO_PHONE_NUMBER,
+//       to: process.env.RECIPIENT_PHONE_NUMBER,
+//     });
+
+//     console.log('SMS sent successfully:', message.sid);
+//     res.status(200).send({ message: 'SOS alert received and SMS sent successfully' });
+//   } catch (error) {
+//     console.error('Error sending SMS:', error);
+//     res.status(500).send({ message: 'Failed to send SOS alert' });
+//   }
+// });
+
+app.listen(process.env.PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 

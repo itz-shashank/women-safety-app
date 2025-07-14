@@ -1,0 +1,5 @@
+# Normalize all text files to LF in repo
+* text=auto
+
+# Force .gitattributes to always use LF
+.gitattributes text eol=lf
