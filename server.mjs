@@ -40,7 +40,7 @@ app.use(cors({
   
    
  'http://localhost:5173' ],
-  credentials: true
+  
 }));
 
 app.use(bodyParser.json());
@@ -156,6 +156,7 @@ mongoose.connect(process.env.MONGO_URI)
   
  
       res.status(201).json({ message: "Signup successful" });
+      alert("Signup Successful! Please Login");
     } catch (error) {
       console.error('Error in signup:', error);
       res.status(500).json({ message: "Internal server error" });
